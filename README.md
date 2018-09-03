@@ -8,3 +8,4 @@
 -*build.gradle* 파일에 `id 'eclipse'` 플러ㅡ인 추가
 -`gradle eclipse` 실행하여 이클립스 설정 파일을 생성
 -이클립스로 프로젝트 임포트
+-repositories mavenCentral() 바꾸기
