@@ -6,4 +6,7 @@
 
 1)자바 프로젝트 디렉토리 구성하기
  $gradle init --type java-application
+
+ 자바 add test
  ```
+
