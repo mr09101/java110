@@ -4,6 +4,11 @@ public class App {
 
 
     public static void main(String[] args) {
+        String [] names = new String[100];
+        String [] emails = new String[100];
+        String [] passwords = new String[100];
+        
+        int index=0; //index 배열을 가르키는
 
         // 1) 키보드 입력을 처리할 객체 준비
         Scanner keyIn = new Scanner(System.in);
@@ -12,22 +17,27 @@ public class App {
 
         while(true) {
             System.out.print("이름? ");
-            String name = keyIn.nextLine();
+           names [index] = keyIn.nextLine();
 
             System.out.print("이메일? ");
-            String email = keyIn.nextLine();
+            emails [index] = keyIn.nextLine();
 
             System.out.print("암호? ");
-            String password = keyIn.nextLine();
+            passwords [index] = keyIn.nextLine();
+            
+            index++;
+            
 
-
-            System.out.printf("%s,%s,%s\n",name,email,password);
             System.out.print("계속 하시곗습니까?(Y/n) ");
             String answer = keyIn.nextLine();
             if(answer.toLowerCase().equals("n"))
                 break;
 
         }
+        for(int i=0;i<index;i++) {
+        System.out.printf("%s,%s,%s\n",names[i],emails[i],passwords[i]);
+        }
+        keyIn.close();
     }
 
 }
