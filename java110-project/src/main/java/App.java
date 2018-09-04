@@ -9,18 +9,25 @@ public class App {
         Scanner keyIn = new Scanner(System.in);
 
         // 2) 사용자로부터 회원정보 입력받기
-        System.out.print("이름? ");
-        String name = keyIn.nextLine();
-        
-        System.out.print("이메일? ");
-        String email = keyIn.nextLine();
-        
-        System.out.print("암호? ");
-        String password = keyIn.nextLine();
-        
-        
-        System.out.printf("%s,%s,%s\n",name,email,password);
 
+        while(true) {
+            System.out.print("이름? ");
+            String name = keyIn.nextLine();
+
+            System.out.print("이메일? ");
+            String email = keyIn.nextLine();
+
+            System.out.print("암호? ");
+            String password = keyIn.nextLine();
+
+
+            System.out.printf("%s,%s,%s\n",name,email,password);
+            System.out.print("계속 하시곗습니까?(Y/n) ");
+            String answer = keyIn.nextLine();
+            if(answer.toLowerCase().equals("n"))
+                break;
+
+        }
     }
 
 }
