@@ -108,7 +108,8 @@ public class App {
 
     private static void serviceStudentMenu() {
         while(true)
-        {            System.out.print("학생 관리> ");
+        {            
+        System.out.print("학생 관리> ");
         String command =keyIn.nextLine();
         if (command.equals("list")) {
             printStudents();
@@ -164,33 +165,33 @@ public class App {
     static void printStudents() {
         //for (int i = 0; i < index; i++)
         int count=0;
-        for (Student s:students)
+        for (Student s : students)
         {
-            if (count++==studentIndex)
+            if (count++ == studentIndex)
                 break;
-            System.out.printf("%s,%s,%s, %s,%b, %s\n", 
+            System.out.printf("%s,%s,%s,%s,%b,%s\n", 
                     s.getName(), 
                     s.getEmail(), 
-                    s.getPassword());
-                    s.getSchool();
-                    s.isWorking();
-                    s.getTel();
+                    s.getPassword(),
+                    s.getSchool(),
+                    s.isWorking(),
+                    s.getTel());
         }
     }
     static void printTeachers() {
         //for (int i = 0; i < index; i++)
         int count=0;
-        for (Teacher s:teachers)
+        for (Teacher s : teachers)
         {
-            if (count++==teacherIndex)
+            if (count++ == teacherIndex)
                 break;
-            System.out.printf("%s,%s,%s, %s,%b, [%s]\n", 
+            System.out.printf("%s,%s,%s,%s,%d,[%s]\n", 
                     s.getName(), 
                     s.getEmail(), 
-                    s.getPassword());
-                    s.getTel();
-                    s.getPay();
-                    s.getSubject();
+                    s.getPassword(),
+                    s.getTel(),
+                    s.getPay(),
+                    s.getSubject());
         }
     }
 
