@@ -1,5 +1,6 @@
+package bitcamp.java100.cms.domain;
 
-public class Member {
+  public class Member {
      
         protected String name;
         protected String email;

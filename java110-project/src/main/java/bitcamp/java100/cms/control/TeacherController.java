@@ -1,17 +1,20 @@
+package bitcamp.java100.cms.control;
 import java.util.Scanner;
 
+import bitcamp.java100.cms.domain.Member;
+
 public class TeacherController {
-    
+
 
     static Teacher[] teachers = new Teacher[100];
     static int teacherIndex = 0;
-    static Scanner keyIn;
-  
+    public static Scanner keyIn;
+
     static class Teacher extends Member{
         protected String tel;
         protected int pay;
         protected String subject;
-        
+
         public String getTel() {
             return tel;
         }
@@ -30,10 +33,10 @@ public class TeacherController {
         public void setSubject(String subject) {
             this.subject = subject;
         }
-        
-        
+
+
     }
-    static void serviceTeacherMenu() {
+    public static void serviceTeacherMenu() {
         while(true)
         {            System.out.print("강사 관리> ");
         String command =keyIn.nextLine();
@@ -48,7 +51,7 @@ public class TeacherController {
         }
         }
     }
-    static void printTeachers() {
+    private static void printTeachers() {
         //for (int i = 0; i < index; i++)
         int count=0;
         for (Teacher s : teachers)
@@ -65,8 +68,8 @@ public class TeacherController {
         }
     }
 
-    
-    static void inputTeachers() {
+
+    private static void inputTeachers() {
         while (true) {
             Teacher m = new Teacher();
 
@@ -78,13 +81,13 @@ public class TeacherController {
 
             System.out.print("암호? ");
             m.setPassword(keyIn.nextLine());
-            
+
             System.out.print("전화? ");
             m.setTel(keyIn.nextLine());
-            
+
             System.out.print("시급? ");
             m.setPay(Integer.parseInt(keyIn.nextLine()));
-            
+
             System.out.print("강의과목?(예:자바,C,C++ ");
             m.setSubject(keyIn.nextLine());
 

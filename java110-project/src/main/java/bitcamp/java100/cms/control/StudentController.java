@@ -1,14 +1,18 @@
+package bitcamp.java100.cms.control;
 import java.util.Scanner;
 
+import bitcamp.java100.cms.domain.Member;
+
 public class StudentController {
-    
-    static Scanner keyIn;
-    
+    static Student[] students = new Student[100];
+    static int studentIndex = 0;
+    public static Scanner keyIn;
+
     static class Student extends Member{
         protected String school;
         protected boolean working;
         protected String tel;
-        
+
         public String getSchool() {
             return school;
         }
@@ -28,27 +32,26 @@ public class StudentController {
             this.tel = tel;
         }
     }
-    
-    static Student[] students = new Student[100];
-    static int studentIndex = 0;
-    
-     static void serviceStudentMenu() {
+
+
+
+    public static void serviceStudentMenu() {
         while(true)
         {            
-        System.out.print("학생 관리> ");
-        String command =keyIn.nextLine();
-        if (command.equals("list")) {
-            printStudents();
-        }else if(command.equals("add")){
-            inputStudents();
-        }else if(command.equals("quit")) {
-            break;
-        }else {
-            System.out.println("유효하지 않는 명령");
-        }
+            System.out.print("학생 관리> ");
+            String command =keyIn.nextLine();
+            if (command.equals("list")) {
+                printStudents();
+            }else if(command.equals("add")){
+                inputStudents();
+            }else if(command.equals("quit")) {
+                break;
+            }else {
+                System.out.println("유효하지 않는 명령");
+            }
         }
     }
-    static void printStudents() {
+    private static void printStudents() {
         //for (int i = 0; i < index; i++)
         int count=0;
         for (Student s : students)
@@ -64,7 +67,7 @@ public class StudentController {
                     s.getTel());
         }
     }
-    static void inputStudents() {
+    private static void inputStudents() {
         while (true) {
             Student m = new Student();
 
@@ -76,13 +79,13 @@ public class StudentController {
 
             System.out.print("암호? ");
             m.setPassword(keyIn.nextLine());
-            
+
             System.out.print("최종학력? ");
             m.setSchool(keyIn.nextLine());
-            
+
             System.out.print("재직여부?(true/false) ");
             m.setWorking(Boolean.parseBoolean(keyIn.nextLine()));
-            
+
             System.out.print("전화? ");
             m.setTel(keyIn.nextLine());
 
