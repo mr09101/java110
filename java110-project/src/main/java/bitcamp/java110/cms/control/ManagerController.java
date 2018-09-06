@@ -6,7 +6,7 @@ import bitcamp.java110.cms.domain.Manager;
 import bitcamp.java110.cms.util.ArrayList;
 
 public class ManagerController {
-    private  ArrayList managers=new ArrayList();
+    private  ArrayList<Manager> managers=new ArrayList<>();
     public  Scanner keyIn;
     public ManagerController(Scanner keyIn) {
         this.keyIn=keyIn;
@@ -34,7 +34,7 @@ public class ManagerController {
     
     private  void printManagers() {
         for (int i=0;i<managers.size();i++) {
-            Manager s=(Manager)managers.get(i);
+            Manager s=managers.get(i);
             System.out.printf("%d: %s, %s, %s, %s, %s\n", 
                     i,
                     s.getName(), 
@@ -94,12 +94,12 @@ public class ManagerController {
             System.out.println("무효한 번호입니다.");
             return;
         }
-        Manager manager = (Manager)managers.get(no);
+        Manager m = managers.get(no);
         
-        System.out.printf("이름: %s\n", manager.getName());
-        System.out.printf("이메일: %s\n", manager.getEmail());
-        System.out.printf("암호: %s\n", manager.getPassword());
-        System.out.printf("직위: %s\n", manager.getPosition());
-        System.out.printf("전화: %s\n", manager.getTel());
+        System.out.printf("이름: %s\n", m.getName());
+        System.out.printf("이메일: %s\n", m.getEmail());
+        System.out.printf("암호: %s\n", m.getPassword());
+        System.out.printf("직위: %s\n", m.getPosition());
+        System.out.printf("전화: %s\n", m.getTel());
     }
 }
