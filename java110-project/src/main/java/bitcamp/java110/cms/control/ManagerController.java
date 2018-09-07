@@ -1,15 +1,17 @@
 package bitcamp.java110.cms.control;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.domain.Manager;
 
 public class ManagerController implements Controller {
-    private  List<Manager> managers;
-    public ManagerController(List<Manager> managers) {
-        this.managers=managers;
-    }
+   
+    public String name="3";
+    private  List<Manager> managers = new ArrayList<>();
+   
+   // public ManagerController() {}
     
     public  void service(Scanner keyIn) {
         while (true) {
