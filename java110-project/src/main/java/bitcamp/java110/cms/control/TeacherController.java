@@ -10,8 +10,7 @@ public class TeacherController implements Controller {
     
     public String name="2";
     private  List<Teacher> teachers = new ArrayList<>();
-    public TeacherController() {
-    }
+   // public TeacherController() {}
     
     public  void service(Scanner keyIn) {
         while (true) {

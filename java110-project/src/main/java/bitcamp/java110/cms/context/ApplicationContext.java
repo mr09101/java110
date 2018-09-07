@@ -23,7 +23,7 @@ public class ApplicationContext {
     }
     //objpool에 보관된 객체를 이름으로 찾아 리턴한다
     public Object getBean(String name) {
-        return null;
+        return objPool.get(name);
         //objpool에서 주어진 이름의 객체를 찾아 리턴한다
     }
     private void findClass(File path, String packagePath)throws Exception {
