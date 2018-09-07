@@ -1,4 +1,8 @@
 # java110-project
+## v1.3
+
+-인터페이스 활용
+-App 클래스와 Controller 
 
 ## v1.2
 
