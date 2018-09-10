@@ -7,6 +7,8 @@ import java.util.HashMap;
 
 import org.apache.ibatis.io.Resources;
 
+import bitcamp.java110.cms.annotation.Component;
+
 public class ApplicationContext {
     HashMap<String,Object> objPool=new HashMap<>();
     public ApplicationContext(String packageName) throws Exception {
@@ -46,13 +48,13 @@ public class ApplicationContext {
                //생성자 가지고 인스턴스를 생성
                Object instance= consructor.newInstance();
                //이름으로 인스턴스의 필드 정보를 찾는다.
-               Field field=clazz.getField("name");
-               //=>name 필드의 값을 꺼낸다.
-               Object name=field.get(instance);
+               
+               //=>클래스에서 Component 애노테이션을 추출한다.
+               Component anno=clazz.getAnnotation(Component.class);
                //System.out.println(clazz.getName()+"==>"+name);
                
-               //name필드의 값으로 인스턴스를 objpool에 저장한다.
-               objPool.put((String)name, instance);
+               //Component 애노테이션 value 값으로 인스턴스를 objpool에 저장한다.
+               objPool.put(anno.value(), instance);
                
                }catch (Exception e) {
                    e.printStackTrace();
