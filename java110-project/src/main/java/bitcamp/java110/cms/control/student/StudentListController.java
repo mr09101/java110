@@ -12,10 +12,11 @@ import bitcamp.java110.cms.domain.Student;
 public class StudentListController {
     @RequestMapping("student/list")
     public  void list(Scanner keyIn) {
-        for (int i = 0; i < App.students.size(); i++) {
-            Student s = App.students.get(i);
-            System.out.printf("%d: %s, %s, %s, %s, %b, %s\n",
-                    i,
+       List<Student> list = App.studentDao.findAll();
+       
+       for(Student s:list) {
+            System.out.printf("%s, %s, %s, %s, %b, %s\n",
+                   
                     s.getName(), 
                     s.getEmail(), 
                     s.getPassword(), 
