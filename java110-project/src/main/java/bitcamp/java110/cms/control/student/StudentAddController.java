@@ -2,14 +2,21 @@ package bitcamp.java110.cms.control.student;
 
 import java.util.Scanner;
 
-import bitcamp.java110.cms.App;
+import bitcamp.java110.cms.annotation.Autowired;
 import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.annotation.RequestMapping;
+import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
 
 @Component
 public class StudentAddController {
+    
    
+    StudentDao studentDao;
+    @Autowired
+    public void setStudentDao(StudentDao studentDao) {
+    this.studentDao = studentDao;
+}
     @RequestMapping("student/add")
     public  void inputStudents(Scanner keyIn) {
         while (true) {
@@ -33,7 +40,7 @@ public class StudentAddController {
             System.out.print("전화? ");
             m.setTel(keyIn.nextLine());
             
-            if(App.studentDao.insert(m)>0) {
+            if(studentDao.insert(m)>0) {
                 System.out.println("저장하였습니다");
             }else {
                 System.out.println("같은 이메일의 학생이 존재합니다");
@@ -44,32 +51,5 @@ public class StudentAddController {
             if (answer.toLowerCase().equals("n"))
                 break;
         }
-    }
-    { //인스턴스 블록
-        Student s = new Student();
-        s.setName("a");
-        s.setEmail("email@test.com");
-
-        App.studentDao.insert(s);
-        
-        s = new Student();
-        s.setName("b");
-        s.setEmail("email2@test.com");
-        App.studentDao.insert(s);
-        
-        s = new Student();
-        s.setName("c");
-        s.setEmail("email3@test.com");
-        App.studentDao.insert(s);
-        
-        s = new Student();
-        s.setName("d");
-        s.setEmail("email4@test.com");
-        App.studentDao.insert(s);
-        
-        s = new Student();
-        s.setName("e");
-        s.setEmail("email5@test.com");
-        App.studentDao.insert(s);
     }
 }

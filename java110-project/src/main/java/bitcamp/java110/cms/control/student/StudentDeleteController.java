@@ -2,12 +2,18 @@ package bitcamp.java110.cms.control.student;
 
 import java.util.Scanner;
 
-import bitcamp.java110.cms.App;
+import bitcamp.java110.cms.annotation.Autowired;
 import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.annotation.RequestMapping;
+import bitcamp.java110.cms.dao.StudentDao;
 
 @Component
 public class StudentDeleteController {
+    StudentDao studentDao;
+    @Autowired
+    public void setStudentDao(StudentDao studentDao) {
+    this.studentDao = studentDao;
+}
 
     @RequestMapping("student/delete")
     public  void deleteStudent(Scanner keyIn) {
@@ -15,7 +21,7 @@ public class StudentDeleteController {
         String email = keyIn.nextLine();
 
 
-        if(App.studentDao.delete(email)>0)
+        if(studentDao.delete(email)>0)
         {
             System.out.println("삭제하였습니다.");
         }else {

@@ -11,9 +11,7 @@ import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.dao.TeacherDao;
 
 public class App {
-    public static StudentDao studentDao=new StudentDao();
-    public static ManagerDao managerDao=new ManagerDao();
-    public static TeacherDao teacherDao=new TeacherDao();
+    
 
     static Scanner keyIn = new Scanner(System.in);
 
@@ -21,7 +19,7 @@ public class App {
         HashMap<String,Controller> requestHandlerMapping = new HashMap<>();
 
         ApplicationContext iocContainer = 
-                new ApplicationContext("bitcamp.java110.cms.control");
+                new ApplicationContext("bitcamp.java110.cms");
 
         //=>저장소에 보관된 객체 중에서 L
 
