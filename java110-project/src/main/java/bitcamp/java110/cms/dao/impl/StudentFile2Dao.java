@@ -1,28 +1,37 @@
 package bitcamp.java110.cms.dao.impl;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
-//@Component
-public class StudentFileDao implements StudentDao{
+@Component
+public class StudentFile2Dao implements StudentDao{
+
     private List<Student> list=new ArrayList<>();
 
-    public StudentFileDao() {
-
-        File dataFile = new File("data/student.dat");
-        try (BufferedReader in=
-                new BufferedReader(new FileReader(dataFile))
+    static String defaultFilename="data/student2.dat";
+    String filename;
+        
+        public StudentFile2Dao(String filename) {
+            this.filename=filename;
+            File dataFile=new File(filename);
+        
+        try (
+                FileInputStream in0=new FileInputStream(dataFile);
+                BufferedInputStream in1=new BufferedInputStream(in0);
+                ObjectInputStream in=new ObjectInputStream(in1);
                 ){
-
-            while (true) {
+            list=(List<Student>)in.readObject();
+           /* while (true) {
                 String line=in.readLine();
                 if(line==null)
                     break;
@@ -37,31 +46,25 @@ public class StudentFileDao implements StudentDao{
                 s.setWorking(Boolean.parseBoolean(values[5]));
 
                 list.add(s);
-            }
+            }*/
 
         }catch (Exception e) {
             e.printStackTrace();
         }
     }
+    public StudentFile2Dao() {
+        this(defaultFilename);
+    }
     private void save() {
-        File dataFile = new File("data/student.dat");
+        File dataFile = new File(filename);
 
 
         try (
-                BufferedWriter out=
-                new BufferedWriter(new FileWriter(dataFile))
+                FileOutputStream out0=new FileOutputStream(dataFile);
+                BufferedOutputStream out1=new BufferedOutputStream(out0);
+                ObjectOutputStream out=new ObjectOutputStream(out1)
                 ){
-            for(Student s:list) {
-                out.write(
-                        String.format("%s,%s,%s,%s,%s,%b\n",
-                                s.getEmail(),
-                                s.getName(),
-                                s.getPassword(),
-                                s.getSchool(),
-                                s.getTel(),
-                                s.isWorking()));
-            }
-            out.flush();
+            out.writeObject(list);
         }catch (Exception e) {
             e.printStackTrace();
         }

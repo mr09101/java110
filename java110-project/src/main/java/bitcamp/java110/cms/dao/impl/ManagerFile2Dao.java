@@ -19,6 +19,7 @@ public class ManagerFile2Dao implements ManagerDao{
     String filename;
     private List<Manager> list=new ArrayList<>();
     
+    @SuppressWarnings("unchecked")
     public ManagerFile2Dao(String filename) {
         this.filename=filename;
         File dataFile = new File(filename);
