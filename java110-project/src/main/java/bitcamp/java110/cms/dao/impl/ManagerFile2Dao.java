@@ -13,7 +13,7 @@ import java.util.List;
 import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.domain.Manager;
-@Component
+//@Component
 public class ManagerFile2Dao implements ManagerDao{
     static String defaultFilename="data/manager2.dat";
     String filename;
