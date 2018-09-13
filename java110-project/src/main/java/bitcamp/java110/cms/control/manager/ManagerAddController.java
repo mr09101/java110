@@ -24,6 +24,7 @@ public class ManagerAddController {
         while (true) {
             Manager m = new Manager();
             
+           
             System.out.print("이름? ");
             m.setName(keyIn.nextLine());
             
