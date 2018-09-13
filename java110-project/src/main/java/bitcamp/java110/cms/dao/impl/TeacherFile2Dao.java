@@ -84,17 +84,24 @@ public class TeacherFile2Dao implements TeacherDao{
     }
 
 
-    public int insert(Teacher teacher) {
-
+    public int insert(Teacher teacher)throws MandatoryValueDaoException,
+    DuplicationDaoException {
+        if(teacher.getName().length()==0 || 
+                teacher.getEmail().length()==0 ||
+                teacher.getPassword().length()==0 
+                ) {
+            throw new MandatoryValueDaoException("필수 입력항목이 비었습니다.");
+        }
         for (Teacher item: list) {
             if(item.getEmail().equals(teacher.getEmail())) {
-                return 0;
+                throw new DuplicationDaoException("같은 이메일이 이미 등록되었습니다.");
             }
         }
         list.add(teacher);
         save();
         return 1;
     }
+        
 
     public List<Teacher> findAll() {
         return list;

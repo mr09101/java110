@@ -71,11 +71,18 @@ public class StudentFile2Dao implements StudentDao{
     }
 
 
-    public int insert(Student student) {
+    public int insert(Student student)throws MandatoryValueDaoException,
+    DuplicationDaoException {
+        if(student.getName().length()==0 || 
+                student.getEmail().length()==0 ||
+                student.getPassword().length()==0 
+                ) {
+            throw new MandatoryValueDaoException("필수 입력항목이 비었습니다.");
+        }
 
         for (Student item: list) {
             if(item.getEmail().equals(student.getEmail())) {
-                return 0;
+                throw new MandatoryValueDaoException("필수 입력항목이 비었습니다.");
             }
         }
         list.add(student);
