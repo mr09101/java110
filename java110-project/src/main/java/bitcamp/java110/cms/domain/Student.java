@@ -13,6 +13,7 @@ public class Student extends Member {
         this.school = school;
     }
     public boolean isWorking() {
+        
         return working;
     }
     public void setWorking(boolean working) {

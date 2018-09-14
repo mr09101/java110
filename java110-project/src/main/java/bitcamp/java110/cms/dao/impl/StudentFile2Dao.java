@@ -13,7 +13,7 @@ import java.util.List;
 import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
-@Component
+//@Component
 public class StudentFile2Dao implements StudentDao{
 
     private List<Student> list=new ArrayList<>();

@@ -18,7 +18,7 @@ import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.dao.TeacherDao;
 import bitcamp.java110.cms.domain.Manager;
 import bitcamp.java110.cms.domain.Teacher;
-@Component
+//@Component
 public class TeacherFile2Dao implements TeacherDao{
     static String defaultFilename="data/teacher2.dat";
     String filename;
