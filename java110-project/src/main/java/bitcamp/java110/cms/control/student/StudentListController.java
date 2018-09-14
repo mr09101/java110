@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.control.student;
 
+import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,11 +22,11 @@ public class StudentListController {
     }
 
     @RequestMapping("student/list")
-    public void list(Scanner keyIn) {
+    public void list(PrintStream out) {
         List<Student> list = studentDao.findAll();
         
         for (Student s : list) {
-            System.out.printf("%d, %s, %s, %s, %b\n",
+            out.printf("%d, %s, %s, %s, %b\n",
                     s.getNo(),
                     s.getName(), 
                     s.getEmail(), 
