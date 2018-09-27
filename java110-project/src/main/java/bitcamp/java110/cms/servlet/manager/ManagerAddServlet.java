@@ -18,15 +18,6 @@ import bitcamp.java110.cms.util.DataSource;
 public class ManagerAddServlet extends HttpServlet { 
     private static final long serialVersionUID = 1L;
    
-    ManagerMysqlDao managerDao;
-  
-    @Override
-    public void init() throws ServletException {
-        DataSource dataSource=new DataSource();
-        managerDao=new ManagerMysqlDao();
-        managerDao.setDataSource(dataSource);
-        
-    }  
     
     @Override
     protected void doGet(HttpServletRequest request, 
@@ -35,6 +26,8 @@ public class ManagerAddServlet extends HttpServlet {
         
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        ManagerDao managerDao= 
+                (ManagerDao)this.getServletContext().getAttribute("managerDao");
         Manager m = new Manager();
         m.setName(request.getParameter("name"));
         m.setEmail(request.getParameter("email"));

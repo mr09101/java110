@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.dao.impl.ManagerMysqlDao;
 import bitcamp.java110.cms.domain.Manager;
 import bitcamp.java110.cms.util.DataSource;
@@ -17,15 +18,7 @@ import bitcamp.java110.cms.util.DataSource;
 public class ManagerDetailServlet extends HttpServlet { 
     private static final long serialVersionUID = 1L;  
 
-        ManagerMysqlDao managerDao;
-        
-        @Override
-        public void init() throws ServletException {
-            DataSource dataSource=new DataSource();
-            managerDao=new ManagerMysqlDao();
-            managerDao.setDataSource(dataSource);
-            
-        }  
+       
       
         @Override
         protected void doGet(HttpServletRequest request, 
@@ -35,6 +28,8 @@ public class ManagerDetailServlet extends HttpServlet {
             response.setContentType("text/plain;charset=UTF-8");
         
         PrintWriter out = response.getWriter();
+        ManagerDao managerDao= 
+                (ManagerDao)this.getServletContext().getAttribute("managerDao");
         Manager m = new Manager();
         if (m == null) {
             out.println("해당 번호의 매니저가 없습니다!");
