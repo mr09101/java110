@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="ex03"/>
+    
+    <!-- Spring WebMVC에서 제공하는 애노테이션을 사용한다면
+         그 애노테이션을 처리할 객체를 등록해야 한다.
+         예를 들어 @Autowired를 쓰기 위해 AutowiredAnnotationBeanPostProcessor 클래스를 
+         등록한 것 처럼 객체를 등록해야 한다. 
+         그런 Spring WebMVC는 개발자가 클래스의 이름을 일일이 암기하지 않아도 되도록 
+         다음 태그를 제공한다. 
+         다음 태그만 선언한다면 MVC와 관련된 객체들이 등록될 것이다.
+    -->
+    <!--
+        @MatrixVariable 애노테이션을 인식하려면 
+        enable-matrix-variables 속성 값을 "true"로 설정해야 한다.
+     -->
+    <mvc:annotation-driven enable-matrix-variables="true"/>
+
+    <!-- Servlet 3.0에서 제공하는 multipart/form-data 처리기를 사용하지 않고
+         (서블릿 컨테이너가 multipart/form-data를 처리하는 것이 아니라)
+         Spring WebMVC 프레임워크에서 직접 처리하고 싶다면,  
+         다음 객체를 등록하라!
+    -->
+    <!--  
+    <bean id="multipartResolver" 
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+        <property name="maxUploadSize" value="2000000" /> 
+    </bean>
+    -->
+    
+    <!-- 기존의 ViewResolver를 교체하기 
+         이 ViewResolver는 request handler가 리턴한 경로의 
+         앞, 뒤에 공통 경로를 추가하여 JSP 파일을 찾아 실행한다.
+    -->
+    <bean id="viewResolver" 
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+	    <property name="prefix" value="/WEB-INF/jsp/"/>
+	    <property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- 예전에는 JSON 데이터를 처리하기 위해 다음의 객체를 등록하였다.
+	     현재 버전(5.1.1)은 따로 등록하지 않아도 된다.
+	-->
+	<!--  
+	<mvc:view-resolvers>
+	    <mvc:content-negotiation>
+	        <mvc:default-views>
+	            <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+	        </mvc:default-views>
+	    </mvc:content-negotiation>
+	    <mvc:jsp/>
+	</mvc:view-resolvers>
+    -->
+    
+    
+    <!-- 인터셉터 설정하기 -->
+    <mvc:interceptors>
+        
+        <!-- 이 프론트 컨트롤러가 취급하는 모든 요청(/app/*)에 대해 인터셉터 적용하기 -->
+        <bean class="ex03.Interceptor1"/>
+        
+        <!-- 특정 URL을 요청했을 때 인터셉터 적용하기 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/ex03/test29/ok/*"/>
+            <bean class="ex03.Interceptor2"/>
+        </mvc:interceptor>
+        
+        <!-- 특정 URL을 제외하기 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/ex03/test29/**"/>
+            <mvc:exclude-mapping path="/ex03/test29/ok/*"/>
+            <bean class="ex03.Interceptor3"/>
+        </mvc:interceptor>
+        
+    </mvc:interceptors>
+    
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
